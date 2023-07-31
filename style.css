@@ -1,3 +1,7 @@
+html {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,6 +12,9 @@ body {
 main {
     background-color: #1D3557;
 }
+
+/*Game Over Screen*/
+
 
 /* Header */
 
@@ -20,12 +27,25 @@ main {
 
 /* Main Content */
 
+h2 {
+    font-weight: bold;
+    font-size: 3rem;
+    color: #457B9D;
+}
+
 #main {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+}
+
+.scoreboard {
+    display:flex;
+    font-size: 10rem;
+    justify-content: space-evenly;
+    align-self: stretch;
 }
 
 .selection {

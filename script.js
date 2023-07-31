@@ -1,71 +1,109 @@
 const selectionButtons = document.querySelectorAll('[data-selection]')
-const computerScoreSpan = document.querySelector('[data-computer-score]')
-const playerScoreSpan = document.querySelector('[data-player-score]')
-
-function getComputerChoice () {
-    const computerChoice = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-    let computerPlay = "rock"
-
-    if (computerChoice == 1) {
-        computerPlay = "rock"
-    } else if (computerChoice == 2) {
-        computerPlay = "scissors"
-    } else {
-        computerPlay = "paper"
-    }
-    return computerPlay;
-}
-
-function playRound (playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase()
-    computerSelection = computerSelection.toLowerCase()
-    const playerWin = "You win! " + playerSelection + " beats " + computerSelection
-    const playerLose = "You lose! " + playerSelection + " loses to " + computerSelection
-    const tie = "You tie! " + playerSelection + " ties with " + computerSelection
-    let outcome = 1;
-
-    if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" || 
-        playerSelection == "paper" && computerSelection == "rock") {
-        console.log(playerWin)
-        return outcome = 1
-    } else if (playerSelection == computerSelection) {
-        console.log(tie)
-        return outcome = 2
-    } else {
-        console.log(playerLose)
-        return outcome = 3
-    }
-}
-
-function updateScore (scoreSpan) {
-    scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1
-}
-
-function resetScore (computerScoreSpan, playerScoreSpan) {
-    alert ("Game over! Try again")
-    computerScoreSpan.innerText = 0
-    playerScoreSpan.innerText = 0
-}
-
+const result = document.querySelector(".outcome")
+const choices = ["rock", "paper", "scissors"]
+const computerScore = document.querySelector('[data-computer-score]')
+const playerScore = document.querySelector('[data-player-score]')
+const computerImage = document.querySelector('[data-computer-image')
+const playerImage = document.querySelector('[data-player-image]')
+const modal = document.querySelector('#game-over')
+let roundWinner = ''
 
 selectionButtons.forEach(selectionButton => {
     selectionButton.addEventListener('click', e => {
-        const selectionName = selectionButton.dataset.selection
-        const score = playRound(selectionName, getComputerChoice())
-
-        if (score === 1) {
-            updateScore (playerScoreSpan)
-            alert("You Win!")
-        }else if (score === 3) {
-            updateScore (computerScoreSpan)
-            alert("You lost!")
-        }
-
-        if (parseInt(computerScoreSpan.innerText) === 5|| parseInt(playerScoreSpan.innerText) === 5) {
-            resetScore(computerScoreSpan, playerScoreSpan)
-        }
-
-
+        const playerSelection = selectionButton.dataset.selection
+        let computerSelection = randomSelection()
+        let outcome = playRound(playerSelection, computerSelection)
+        updateImages(playerSelection, computerSelection)
+        updateScore(outcome)
+        gameOver(playerScore, computerScore)
     })
 })
+
+function gameOver(playerScore, computerScore) {
+    if (playerScore.innerText == 5) {
+        modal.show()
+    }
+    if (computerScore.innerText == 5) {
+        modal.show()
+    }
+
+}
+
+function updateImages (playerSelection, computerSelection) {
+    // change image of player side
+    switch (playerSelection) {
+        case 'rock':
+            playerImage.textContent = '🗿'
+            break
+        case 'paper':
+            playerImage.textContent = '📄'
+            break
+        case 'scissors':
+            playerImage.textContent = '✂'
+            break
+    }
+    // change image of computer side
+    switch (computerSelection) {
+        case 'ROCK':
+            computerImage.textContent = '🗿'
+            break
+        case 'PAPER':
+            computerImage.textContent = '📄'
+            break
+        case 'SCISSORS':
+            computerImage.textContent = '✂'
+            break
+    }
+}
+
+function randomSelection () {
+    const randomChoice = Math.floor(Math.random() * choices.length)
+    switch (randomChoice) {
+        case 0:
+            return 'ROCK'
+        case 1:
+            return 'PAPER'
+        case 2:
+            return 'SCISSORS'
+    }
+}
+
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.toLowerCase()
+    computerSelection = computerSelection.toLowerCase()
+
+    if (playerSelection === computerSelection) {
+        return roundWinner = 'tie'
+    }
+
+    if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection == 'scissors' && computerSelection === 'paper') ||
+        (playerSelection == 'paper' && computerSelection === 'rock')
+       ) {
+        return roundWinner = 'player'
+       } else {
+        return roundWinner = 'computer'
+       }
+}
+
+function incrementScore(score) {
+    score.innerText = parseInt(score.innerText) + 1
+}
+
+function updateScore (outcome) {
+    if (outcome === 'player') {
+        result.innerText = 'You won!'
+        result.style.color = 'green'
+        incrementScore(playerScore)
+    } else if (outcome === 'computer') {
+        result.innerText = 'You lost...'
+        result.style.color = 'red'
+        incrementScore(computerScore)
+    } else {
+        result.innerText = 'It was a tie'
+        result.style.color = 'yellow'
+    }
+
+}
 
