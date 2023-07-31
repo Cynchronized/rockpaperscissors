@@ -116,4 +116,12 @@ h2 {
     justify-content: center;
     background-color: #457B9D;
     color: #F1FAEE;
+    align-items: center;
 }
+
+
+img {
+    height: 25px;
+    padding-left: 5px;
+}
+
