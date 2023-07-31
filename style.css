@@ -49,6 +49,14 @@ main {
     gap: 100px;
 }
 
+#playerScore {
+    color: #A8DADC;
+}
+
+#computerScore {
+    color: #E63946;
+}
+
 
 /* Footer */
 
