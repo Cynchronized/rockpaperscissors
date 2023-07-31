@@ -1,13 +1,16 @@
 const selectionButtons = document.querySelectorAll('[data-selection]')
 const result = document.querySelector(".outcome")
+const modalMessage = document.querySelector("#game-over-message")
 const choices = ["rock", "paper", "scissors"]
 const computerScore = document.querySelector('[data-computer-score]')
 const playerScore = document.querySelector('[data-player-score]')
 const computerImage = document.querySelector('[data-computer-image')
 const playerImage = document.querySelector('[data-player-image]')
 const modal = document.querySelector('#game-over')
+const restartbtn = document.querySelector('#restart-button')
 let roundWinner = ''
 
+// Event Listeners
 selectionButtons.forEach(selectionButton => {
     selectionButton.addEventListener('click', e => {
         const playerSelection = selectionButton.dataset.selection
@@ -15,18 +18,37 @@ selectionButtons.forEach(selectionButton => {
         let outcome = playRound(playerSelection, computerSelection)
         updateImages(playerSelection, computerSelection)
         updateScore(outcome)
-        gameOver(playerScore, computerScore)
     })
 })
 
+restartbtn.addEventListener('click', restartGame)
+
+
+
+
+
+
+// Functions
+
+function restartGame() {
+    playerImage.textContent = '🧠'
+    computerImage.textContent = '🤖'
+    playerScore.textContent = '0'
+    computerScore.textContent = '0'
+    result.innerText = 'First to 5 wins!'
+    result.style.color = '#457B9D'
+    modal.close()
+
+}
+
 function gameOver(playerScore, computerScore) {
     if (playerScore.innerText == 5) {
-        modal.show()
-    }
-    if (computerScore.innerText == 5) {
-        modal.show()
+        modalMessage.innerText = "You won! Please try again"
+    }else if (computerScore.innerText == 5) {
+        modalMessage.innerText = "You lost! Try again?"
     }
 
+    modal.showModal()
 }
 
 function updateImages (playerSelection, computerSelection) {
@@ -104,6 +126,11 @@ function updateScore (outcome) {
         result.innerText = 'It was a tie'
         result.style.color = 'yellow'
     }
+
+    if (playerScore.innerText == 5 || computerScore.innerText == 5) {
+        gameOver(playerScore, computerScore)
+    }
+
 
 }
 

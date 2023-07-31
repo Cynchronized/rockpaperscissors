@@ -13,7 +13,36 @@ main {
     background-color: #1D3557;
 }
 
-/*Game Over Screen*/
+/* Game Over Modal */
+
+#game-over {
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: #457B9D;
+    text-align: center;
+}
+
+#game-over-message {
+    font-size: 2rem;
+    color: #F1FAEE;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+#restart-button {
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 9rem;
+}
+
+
 
 
 /* Header */
