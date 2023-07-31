@@ -1,4 +1,6 @@
 body {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     margin: 0;
 }
@@ -14,6 +16,37 @@ main {
     justify-content: center;
     background-color: #457B9D;
     color: #F1FAEE;
+}
+
+/* Main Content */
+
+#main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 9rem;
+    transition: 100ms;
+}
+
+.selection:hover {
+    transform: scale(1.2);
+}
+
+.results {
+    font-size: 3rem;
+    display: flex;
+    padding: 1rem;
+    margin: 1rem;
+    gap: 100px;
 }
 
 
