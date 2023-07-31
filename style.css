@@ -1,0 +1,29 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    background-color: #1D3557;
+}
+
+/* Header */
+
+#header {
+    display: flex;
+    justify-content: center;
+    background-color: #457B9D;
+    color: #F1FAEE;
+}
+
+
+/* Footer */
+
+#footer {
+    position: sticky;
+    top: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #457B9D;
+    color: #F1FAEE;
+}

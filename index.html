@@ -5,18 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="buttons">
-        <button class = "selection" data-selection="rock">Rock</button>
-        <button class = "selection" data-selection="paper">Paper</button>
-        <button class = "selection" data-selection="scissors">Scissors</button>
+    <div id="header">
+        <h1 id="title">Rock Paper Scissors</h1>
     </div>
-    <div>
-        <p>Player Score: </p>
-        <span data-player-score>0</span>
-        <p>Computer Score: </p>
-        <span data-computer-score>0</span>
+    <main>
+        <div class="buttons">
+            <button class = "selection" data-selection="rock">Rock</button>
+            <button class = "selection" data-selection="paper">Paper</button>
+            <button class = "selection" data-selection="scissors">Scissors</button>
+        </div>
+        <div>
+            <p>Player Score: <span data-player-score>0</span></p>
+            <p>Computer Score: <span data-computer-score>0</span></p>
+        </div>
+    </main>
+    <div id ="footer">
+        <p>
+            Copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            Cynchronized
+        </p>
     </div>
     </body>
 </html>
